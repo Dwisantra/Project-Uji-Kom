@@ -104,10 +104,19 @@ class SiswaController extends Controller
         return view('/siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran, 'categories' => $categories, 'data' => $data]);
     }
 
-    public function addnilai(Request $request,$idsiswa){
+    public function addnilai(Request $request,$idsiswa)
+    {
         $siswa = \App\Models\Siswa::find($idsiswa);
         $siswa->mapel()->attach($request->mapel,['nilai'=> $request->nilai]);
 
         return redirect('siswa/'.$idsiswa.'/profile')->with('sukses','Data berhasil ditambahkan');
     }
+
+    public function deletenilai($idsiswa, $idmapel)
+    {
+        $siswa = \App\Models\Siswa::find($idsiswa);
+        $siswa->mapel()->detach($idmapel);
+        return redirect()->back()->with('sukses','Data nilai berhasil terhapus!');
+    }
+
 }

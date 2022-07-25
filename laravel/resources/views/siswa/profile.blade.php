@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 @stop
 
 @section('content')
@@ -79,6 +79,7 @@
                                         <th>Nama</th>
                                         <th>Semester</th>
                                         <th>Nilai</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,7 +88,8 @@
                                         <td>{{$mapel->kode}}</td>
                                         <td>{{$mapel->nama}}</td>
                                         <td>{{$mapel->semester}}</td>
-                                        <td><a href="#" class="ubahNilai" data-type="text" data-pk="1" data-url="/post" data-title="Input Nilai">{{$mapel->pivot->nilai}}</a></td>
+                                        <td><a href="#" class="ubahNilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Input Nilai">{{$mapel->pivot->nilai}}</a></td>
+                                        <td><a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">DELETE</a></></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -149,7 +151,7 @@
 
 @section('footer')
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <script>
         Highcharts.chart('chartNilai', {
             chart: {
@@ -203,7 +205,7 @@
 
         // Editable Nilai
         $(document).ready(function() {
-            $('.ubahNilai').editable();
+            $('.ubahNilai').editable({});
         });
     </script>
 @stop
