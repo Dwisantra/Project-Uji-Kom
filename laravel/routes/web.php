@@ -3,6 +3,7 @@
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth','checkRole:guru']],function()
     Route::get('/siswa/{id}/profile',[SiswaController::class, 'profile']);
     Route::post('/siswa/{id}/addnilai',[SiswaController::class, 'addnilai']);
     Route::get('/siswa/{id}/{idmapel}/deletenilai',[SiswaController::class, 'deletenilai']);
+    Route::get('/guru/{id}/profile',[GuruController::class, 'profile']);
 });
 
 Route::group(['middleware' => ['auth','checkRole:guru,siswa']],function()
