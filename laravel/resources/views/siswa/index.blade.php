@@ -10,8 +10,8 @@
                                 <h3 class="panel-title">Data Siswa</h3>
                             </div>
                             <div class="panel-body">
-                                <a href="/siswa/add" class="btn btn-sm btn-primary">TAMBAH</a>
-                                <table class="table table-hover" id="dataTable">
+                                <a href="/siswa/add" class="btn btn-sm btn-primary">TAMBAH</a><hr>
+                                <table class="table table-hover" id="datatable">
                                     <thead>
                                         <tr>
                                             <th>Nama Depan</th>
@@ -33,11 +33,12 @@
                                             <td>{{$siswa->alamat}}</td>
                                             <td>{{$siswa->nilairata()}}</td>
                                             <td><a href="/siswa/{{$siswa->id}}/edit" class="btn btn-sm btn-warning">EDIT</a>
-                                                <a href="/siswa/{{$siswa->id}}/delete" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">DELETE</a></td>
+                                                <a href="#" class="btn btn-sm btn-danger delete" siswa-id="{{$siswa->id}}">DELETE</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                                {{-- {{$data_siswa->siswa->links()}} --}}
                             </div>
                         </div>
                     </div>
@@ -45,13 +46,34 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('footer')
     <script>
-        $(document).ready(function () {
-            $('#dataTable').DataTable({
-                processing:true,
-                serverside:true,
-                ajax:"http://127.0.0.1:8000/datasiswa"
+        $(document).ready(function(){
+            $('#datatable').DataTable();
+
+            $('.delete').click(function(){
+            var siswa_id = $(this).attr('siswa-id');
+            swal({
+                title: "Yakin?",
+                text: "Apakah data siswa id "+siswa_id+" akan dihapus?!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/siswa/"+siswa_id+"/delete";
+                    swal("Yeay! Data berhasil Terhapus!", {
+                    icon: "success",
+                    });
+                } else {
+                    swal("Ups! Data aman tidak terhapus");
+                }
+                });
             });
         });
+
     </script>
 @stop

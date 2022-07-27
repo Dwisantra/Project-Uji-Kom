@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Dashboard | Data Siswa</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="{{asset('admin/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('admin/assets/vendor/linearicons/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{asset('admin/assets/css/main.css')}}">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -47,6 +49,14 @@
 	<script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        @if(Session::has('sukses'))
+            toastr.success('{{Session::get('sukses')}}', 'Data diperbaharui!')
+        @endif
+    </script>
     @yield('footer')
 </body>
 

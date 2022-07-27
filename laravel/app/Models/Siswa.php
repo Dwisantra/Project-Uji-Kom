@@ -32,7 +32,11 @@ class Siswa extends Model
             $total += $mapel->pivot->nilai;
             $hitung++;
         }
-        return round($total/$hitung);
+        if($total == 0) {
+            return 0;
+        } else {
+            return round($total/$hitung);
+        }
     }
 
     public function nama_lengkap()
