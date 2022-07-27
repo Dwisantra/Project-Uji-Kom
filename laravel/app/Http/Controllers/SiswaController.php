@@ -12,7 +12,7 @@ class SiswaController extends Controller
     {
         if($request->has('q'))
         {
-            $data_siswa = \App\Models\Siswa::where('nama_depan','LIKE','%'.$request->q.'%')->get();
+            $data_siswa = \App\Models\Siswa::where('nama_depan','LIKE','%'.$request->q.'%');
         }
         else
         {
@@ -118,5 +118,4 @@ class SiswaController extends Controller
         $siswa->mapel()->detach($idmapel);
         return redirect()->back()->with('sukses','Data nilai berhasil terhapus!');
     }
-
 }
